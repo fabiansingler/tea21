@@ -6,7 +6,9 @@
 
 #include "CLI/CLI.hpp"
 #include "config.h"
-int foo;
+int bss;
+int data = 4711;
+const int rodata = 4711;
 
 auto main(int argc, char **argv) -> int
 {
@@ -17,7 +19,19 @@ auto main(int argc, char **argv) -> int
      * it is much more convenient than std::cout and printf
      * More info at https://fmt.dev/latest/api.html
      */
-    fmt::print("Hello, {}!\n", "hello");
+    fmt::print("Value of variable bss {} adress of variable foo {}\n",
+    bss,
+    fmt::ptr(&bss));
+
+    fmt::print("Value of variable foo {} adress of variable data {}\n",
+    data,
+    fmt::ptr(&data));
+
+    fmt::print("Value of variable foo {} adress of variable rodata {}\n",
+    rodata,
+    fmt::ptr(&rodata));
+
+
 
     return 0; /* exit gracefully*/
 }
